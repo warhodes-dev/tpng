@@ -1,24 +1,15 @@
-use tpng::run;
+use tpng::Image;
 use std::env;
 use std::path::{Path, PathBuf};
 use std::fs;
+use std::error::Error;
 
-fn main() {
-
-    if let Some(path_string) = env::args().nth(1) {
-
-        match fs::canonicalize(PathBuf::from(&path_string)) {
-            Ok(full_path) => {
-                let path = Path::new(&full_path);
-                if let Err(e) = run(path) {
-                    println!("Error: {}", e);
-                }
-            }
-            Err(e) => {
-                println!("Error: {}", e)
-            }
-        };
-    } else {
-        println!("usage: trender <imgpath>")
-    }
+fn run() -> Result<(), Box<dyn Error>> {
+    let path_string = env::args().nth(1).ok_or("usage: tpng <img_path>")?;
+    let path = fs::canonicalize(PathBuf::from(&path_string))?;
+    println!("{}", Image::new(&path)?);
+    Ok(())
 }
+
+fn main() { if let Err(e) = run() { eprintln!("Error: {e}"); } }
+
