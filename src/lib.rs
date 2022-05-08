@@ -6,13 +6,11 @@ use std::fmt::Write;
 use png::Decoder;
 use colored::*;
 
-
-#[allow(dead_code)]
 pub struct Image {
     data: Vec<u8>,
     width: u32,
     height: u32,
-    size: u32,
+//  size: u32,
 }
 
 impl Image {
@@ -29,8 +27,8 @@ impl Image {
 
         Ok( Image { data: img_data, 
                     width: info.width, 
-                    height: info.height,
-                    size: (info.width * info.height) } )
+                    height: info.height, } )
+ //                 size: (info.width * info.height) } )
     }
 
     pub fn as_string(&self) -> Result<String, Box<dyn Error>> {
