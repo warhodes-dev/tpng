@@ -62,6 +62,9 @@ impl Image {
         Ok(buf)
     }
 
+    pub fn width(&self) -> u32 { self.width }
+    pub fn height(&self) -> u32 { self.height }
+
     /*
     fn to_string(img: &Image) -> Result<(), Box<dyn Error>> {
         for idx in (0..(img.size * 4)).step_by(4) {
