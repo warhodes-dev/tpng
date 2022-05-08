@@ -15,6 +15,7 @@ pub struct Image {
 
 impl Image {
 
+    /// Constructs new Image object from PNG file at <path>
     pub fn new(path: &Path) -> Result<Image, Box<dyn Error>> {
         let decoder = Decoder::new(File::open(path)?);
         let mut reader = decoder.read_info()?;
@@ -31,29 +32,28 @@ impl Image {
  //                 size: (info.width * info.height) } )
     }
 
+    /// Returns a string of unicode characters and truecolor escape sequences that,
+    /// when printed to a terminal that supports truecolor, will render a PNG in text.
     pub fn as_string(&self) -> Result<String, Box<dyn Error>> {
-        let img = self;
         let mut buf = String::new();
 
-        for y in (0..img.height).step_by(2) {
-            for x in (0..(img.width * 4)).step_by(4) {
-                
-                let top = y * (img.width * 4) + x;
-                let t = top as usize;
-                let tr = img.data[t];
-                let tg = img.data[t+1];
-                let tb = img.data[t+2];
+        for y in (0..self.height).step_by(2) {
+            for x in (0..(self.width * 4)).step_by(4) {
 
-                let (br, bg, bb);
-                if y+1 != img.height {
-                    let bot = (y+1) * (img.width * 4) + x;
-                    let b = bot as usize;
-                    br = img.data[b];
-                    bg = img.data[b+1];
-                    bb = img.data[b+2];
+                // Get the top pixel location in PNG data buffer
+                // Map the RGB values to tr, tg, tb (top red/green/blue)
+                let t = (y * self.width * 4 + x) as usize;
+                let (tr, tg, tb) = ( self.data[t], self.data[t+1], self.data[t+2] );
+
+                // Get the bottom pixel location in PNG data buffer
+                // Map the RGB values to br, bg, bb (bottom red/green/blue)
+                // If there's an odd number of rows in the buffer, add a blank row
+                let (br, bg, bb) = if (y+1) != self.height {
+                    let b = ((y+1) * self.width * 4 + x) as usize;
+                    ( self.data[b], self.data[b+1], self.data[b+2] )
                 } else {
-                    (br, bg, bb) = (0, 0, 0)
-                }
+                    (0, 0, 0,)
+                };
 
                 write!(&mut buf, "{0}", "▀".truecolor(tr, tg, tb).on_truecolor(br, bg, bb))?;
             }
