@@ -3,6 +3,6 @@
 Converts png images into strings that can be printed to the terminal. Only works on terminals that support truecolor.
 
 ## Installation
-Requirements: have cargo installed. Then,
+Requirements: have cargo installed. 
 
-`cargo install tpng`
+Then, `cargo install tpng`
