@@ -1,6 +1,6 @@
 [package]
 name = "tpng"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 license = "MIT OR Apache-2.0"
 description = "A small tool that prints truecolor png renderings to the terminal using unicode block characters"
