@@ -17,7 +17,7 @@ pub struct Image {
 
 impl Image {
 
-    /// Constructs new Image object from PNG file at <path>
+    /// Constructs new Image object from PNG file at path
     pub fn new(path: &Path) -> Result<Image, Box<dyn Error>> {
         let decoder = Decoder::new(File::open(path)?);
         let mut reader = decoder.read_info()?;
