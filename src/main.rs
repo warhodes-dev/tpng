@@ -7,7 +7,8 @@ use std::error::Error;
 fn run() -> Result<(), Box<dyn Error>> {
     let path_arg = env::args().nth(1).ok_or("usage: tpng <img_path>")?;
     let path = fs::canonicalize(PathBuf::from(&path_arg))?;
-    println!("{}", Image::new(&path)?);
+    let img = Image::new(&path)?;
+    println!("{}", img);
     Ok(())
 }
 
