@@ -42,7 +42,7 @@ impl Image {
         let mut buf = String::new();
 
         for y in (0..self.height).step_by(2) {
-            for x in 0..self.height {
+            for x in 0..self.width {
                 let (tr, tg, tb, _) = self.get_pixel(x, y)?;
                 let (br, bg, bb, _) = if (y+1) < self.height {
                     self.get_pixel(x, y+1)?

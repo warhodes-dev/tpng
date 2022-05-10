@@ -5,7 +5,7 @@ use std::fs;
 use std::error::Error;
 
 fn run() -> Result<(), Box<dyn Error>> {
-    let path_arg = env::args().nth(1).ok_or("usage: tpng <img_path>")?;
+    let path_arg = env::args().nth(1).ok_or("invalid argument")?;
     let path = fs::canonicalize(PathBuf::from(&path_arg))?;
     let img = Image::new(&path)?;
     println!("{}", img);
