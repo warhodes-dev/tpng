@@ -1,8 +1,7 @@
 [package]
 name = "tpng"
 version = "0.1.5"
-edition = "2021"
-rust = "1.48.0"
+edition = "2018"
 license = "MIT OR Apache-2.0"
 description = "A small tool that prints truecolor png renderings to the terminal using unicode block characters"
 repository = "https://github.com/warhodes-dev/tpng"
