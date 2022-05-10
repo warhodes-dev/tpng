@@ -1,6 +1,6 @@
 [package]
 name = "tpng"
-version = "0.1.4"
+version = "0.1.5"
 edition = "2021"
 rust = "1.48.0"
 license = "MIT OR Apache-2.0"
