@@ -105,14 +105,3 @@ impl fmt::Display for Image {
         Ok(())
     }
 }
-
-
-
-
-
-
-
-
-
-
-

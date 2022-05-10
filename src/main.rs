@@ -12,5 +12,5 @@ fn run() -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
-fn main() { if let Err(e) = run() { eprintln!("Error: {e}"); } }
+fn main() { if let Err(e) = run() { eprintln!("Error: {}", e); } }
 
